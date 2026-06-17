@@ -3,7 +3,7 @@ from src.models import train_binary_model, train_diagnostic_model, save_model
 
 def run_pipeline():
     print("1. Loading raw data...")
-    df = load_data("data/predictive_maintenance.csv")
+    df = load_data("./data/predictive_maintenance.csv")
     
     print("2. Engineering physical features...")
     df_processed = engineer_features(df)

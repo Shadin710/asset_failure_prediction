@@ -19,5 +19,5 @@ def engineer_features(df):
         'Product ID',
         'Type'
     ]
-    X= X.drop(colums=[c for c in cols_to_drop if c in X.columns], error='ignore')
+    X= X.drop(columns=[c for c in cols_to_drop if c in X.columns], errors='ignore')
     return X
