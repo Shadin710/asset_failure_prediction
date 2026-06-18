@@ -54,7 +54,53 @@ Raw sensor values evaluated in isolation often miss the cumulative stressors tha
         
 *   **Ordinal Quality Encoding:** Maps categorical product quality variants (L, M, H) into numeric ordinal constraints (0, 1, 2) to represent design and manufacturing tolerances.
     
+📊 Evaluation & Model Performance
 
+In predictive maintenance environments, datasets exhibit extreme class imbalance (failures constitute less than 5% of total operations). Standard baseline metrics like "Accuracy" are deceptive. To ensure business-critical viability, this system optimizes for Recall (minimizing missed failures) and Precision-Recall AUC (PR-AUC).
+
+## Model Results Matrix
+```
+============================================================
+     PREDICTIVE MAINTENANCE EVALUATION MATRIX ENGINE     
+============================================================
+
+[EVALUATING TIER 1: BINARY WATCHDOG MODEL]
+
+--- Confusion Matrix ---
+True Negatives (Predicted Safe, Actually Safe): 1931
+False Positives (False Alarms):              1
+False Negatives (Missed Failures!):          0 <-- Crucial Metric
+True Positives (Predicted Failure, Caught):   68
+
+--- Classification Metrics Summary ---
+              precision    recall  f1-score   support
+
+ Operational       1.00      1.00      1.00      1932
+Failure Risk       0.99      1.00      0.99        68
+
+    accuracy                           1.00      2000
+   macro avg       0.99      1.00      1.00      2000
+weighted avg       1.00      1.00      1.00      2000
+
+Precision-Recall AUC Score: 1.0000
+
+============================================================
+[EVALUATING TIER 2: MULTI-CLASS DIAGNOSTIC MODEL]
+
+--- Diagnostic Breakdown Matrix ---
+                          precision    recall  f1-score   support
+
+Heat Dissipation Failure       1.00      1.00      1.00        28
+              No Failure       1.00      1.00      1.00         2
+      Overstrain Failure       1.00      1.00      1.00        15
+           Power Failure       1.00      1.00      1.00        13
+       Tool Wear Failure       1.00      1.00      1.00        10
+
+                accuracy                           1.00        68
+               macro avg       1.00      1.00      1.00        68
+            weighted avg       1.00      1.00      1.00        68
+============================================================
+```
 📊 Core Performance Metrics
 ---------------------------
 
