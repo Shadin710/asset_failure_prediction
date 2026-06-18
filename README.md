@@ -54,7 +54,7 @@ Raw sensor values evaluated in isolation often miss the cumulative stressors tha
         
 *   **Ordinal Quality Encoding:** Maps categorical product quality variants (L, M, H) into numeric ordinal constraints (0, 1, 2) to represent design and manufacturing tolerances.
     
-📊 Evaluation & Model Performance
+## 📊 Evaluation & Model Performance
 
 In predictive maintenance environments, datasets exhibit extreme class imbalance (failures constitute less than 5% of total operations). Standard baseline metrics like "Accuracy" are deceptive. To ensure business-critical viability, this system optimizes for Recall (minimizing missed failures) and Precision-Recall AUC (PR-AUC).
 
