@@ -34,7 +34,7 @@ predictive_maintenance/
 ├── dashboard.py                        # Interactive Streamlit Web UI
 ├── main.py                             # Root pipeline orchestration script
 └── requirements.txt                    # Project dependencies\
-``
+```
 🛠️ Feature Engineering & Physical Domain Principles
 ----------------------------------------------------
 
