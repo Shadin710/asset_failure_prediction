@@ -98,7 +98,7 @@ python -m venv venv
 ```
 Install the all Dependencies in the ``requirements.txt`` file 
 ```
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 2\. Execute Unit Testing Suite
@@ -118,7 +118,7 @@ python main.py
 
 Spin up your local development server to run the Streamlit user interface panel:
 ```
-streamlit run dashboard.py   `
+streamlit run dashboard.py
 ```
 💡 Two-Tier Predictive Decision Logic
 -------------------------------------
