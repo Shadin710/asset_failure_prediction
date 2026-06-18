@@ -116,7 +116,19 @@ There are two major architectural takeaways from this matrix that validate our m
    Looking at the bottom row, the linear correlation between individual features and the `Target` appears quite low (e.g., `Frictional_Wear_Index` at `0.19`, `Mechanical_Power` at `0.18`, and `Thermal_Diff` at `-0.11`). 
    
    In traditional linear modeling (like Logistic Regression), these weak coefficients might suggest low predictive power. However, because industrial failures are governed by complex, threshold-based physics (e.g., a machine only fails if *both* speed is low AND temperature delta is tight), the relationships are highly non-linear. This matrix mathematically justifies why a linear model would fail, and why a non-linear ensemble algorithm like **Random Forest** was required to achieve perfect classification boundaries.
-    
+### 📈 Understanding the Tier 1 Precision-Recall Curve
+
+The plot below illustrates the Precision-Recall (PR) curve for the Tier 1 Binary Watchdog model. Achieving a perfect right-angle curve with a **Precision-Recall AUC Score of 1.0000** is the ideal mathematical state for highly imbalanced classification.
+
+![Precision-Recall Curve](./images/precision_recall_curve.png)
+
+#### Core Metrics Decoded:
+* **X-Axis: Recall (Sensitivity):** Reflects the percentage of actual physical machinery failures caught by the system. A Recall of `1.0` means the model successfully flagged **100% of the true failures** (68 out of 68), resulting in **zero missed failures (False Negatives)**. This eliminates catastrophic, un-planned factory floor downtime.
+* **Y-Axis: Precision (Alarm Trustworthiness):** Reflects the accuracy of the sounded alarms. A Precision of `1.0` means that every time the model declared an asset was at risk, it was completely correct, resulting in **zero false alarms (False Positives)**. This prevents maintenance crews from wasting labor hours servicing perfectly healthy assets.
+
+#### Operational Takeaways:
+1.  **The Perfect Right Angle:** In highly skewed datasets ($<5\%$ failure states), standard models suffer a severe trade-off: lowering classification thresholds to catch more failures (increasing Recall) typically forces the model to misclassify healthy samples as anomalies, dragging Precision down. Our curve remains completely flat at `1.0` Precision all the way up to `1.0` Recall. This proves our engineered physical features created flawless class separation.
+2.  **The Drop at the Absolute Cliff Edge:** The vertical drop on the far right edge occurs when the decision threshold is mathematically forced to exactly `0.0`. At this point, the model defaults to classifying *all* 2,000 test samples as failures. While Recall remains technically pinned at `1.0` (all failures are caught), Precision naturally plummets to the baseline failure rate of the dataset (~3.4%), as thousands of operational machines are falsely alarmed.
 
 🚀 Execution & Deployment Guide
 -------------------------------
@@ -165,3 +177,11 @@ The dashboard application leverages a **Cascade Inference Architecture**:
 2.  **Tier 2 Diagnostics:** If the Watchdog detects an anomaly, the secondary multi-class diagnostic layer instantly activates to isolate the root cause (e.g., _Tool Wear Failure, Heat Dissipation Failure, Power Failure_).
     
 3.  **Prescriptive Engine:** Maps the failure diagnosis to specific, actionable workplace tasks for operators, shifting factory floor procedures from reactive crisis-management to planned, prescriptive intervals.
+
+### 👨‍💻 Author
+-------------------------------------
+Author Name: MD Moshiur Rahman
+
+### 📄 License
+-------------------------------------
+MIT License
