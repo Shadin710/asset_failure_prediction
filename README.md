@@ -89,7 +89,9 @@ To ensure business-critical viability, this system optimizes for and evaluates t
 ### 1\. Setup Environment & Install Dependencies
 
 Clone this repository to your local directory and install the pinned core requirements:
-
+```
+git clone https://github.com/Shadin710/asset_failure_prediction.git
+```
 Bash
 
 Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pip install -r requirements.txt   `
