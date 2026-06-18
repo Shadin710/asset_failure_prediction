@@ -101,32 +101,21 @@ Heat Dissipation Failure       1.00      1.00      1.00        28
             weighted avg       1.00      1.00      1.00        68
 ============================================================
 ```
-📊 Core Performance Metrics
----------------------------
+### 🔍 Understanding the Feature Correlation Matrix
 
-In predictive maintenance environments, **datasets exhibit extreme class imbalance** (failures typically constitute less than 5% of total operations). Standard baseline metrics like "Accuracy" are highly deceptive. A model can achieve 98% accuracy simply by predicting that a machine will never fail, while failing to catch any breakdowns.
 
-To ensure business-critical viability, this system optimizes for and evaluates the following core metrics:
+The heatmap below illustrates the Pearson correlation coefficients between our engineered physical features and the binary failure `Target`. 
 
-### 1\. Recall (Sensitivity)
+![Correlation Heatmap](./images/feature_correlation_heatmap.png)
 
-*   **Definition:** The percentage of true machine failures successfully flagged by the model.
-    
-*   **Business Impact:** High Recall minimizes **False Negatives (missed failures)**. In manufacturing, missing a failure means an entire production line halts unexpectedly, resulting in massive emergency repair bills and unbacked output delays. This model prioritizes maximizing Recall to guarantee no impending failure goes unnoticed.
-    
+There are two major architectural takeaways from this matrix that validate our modeling strategy:
 
-### 2\. Precision
+1. **Zero to Low Multicollinearity:** Except for a moderate, physically expected correlation of `0.37` between `Mechanical_Power` and `Frictional_Wear_Index` (since both equations incorporate the machine's operational torque), the features show virtually zero correlation with one another (averaging `0.01`). This confirms that each engineered feature introduces a completely independent, distinct physical signal to the model, preventing inflation of variance and ensuring model stability.
 
-*   **Definition:** The percentage of predicted failure alarms that correspond to an actual real-world failure.
-    
-*   **Business Impact:** High Precision minimizes **False Alarms (False Positives)**. Routinely sounding false alarms frustrates maintenance crews and leads to unnecessary downtime for healthy machinery, raising operating expenditures.
-    
-
-### 3\. Precision-Recall AUC (PR-AUC)
-
-*   **Definition:** The area under the Precision-Recall curve plotted across various classification decision thresholds.
-    
-*   **Business Impact:** Standard metrics like ROC-AUC can present an artificially optimistic score when analyzing heavily skewed datasets. PR-AUC focuses exclusively on the minority target class (Failures), making it the gold-standard metric for verifying model reliability in imbalanced industrial environments.
+2. **The Non-Linearity Justification (Why Tree-Based Models Win):**
+   Looking at the bottom row, the linear correlation between individual features and the `Target` appears quite low (e.g., `Frictional_Wear_Index` at `0.19`, `Mechanical_Power` at `0.18`, and `Thermal_Diff` at `-0.11`). 
+   
+   In traditional linear modeling (like Logistic Regression), these weak coefficients might suggest low predictive power. However, because industrial failures are governed by complex, threshold-based physics (e.g., a machine only fails if *both* speed is low AND temperature delta is tight), the relationships are highly non-linear. This matrix mathematically justifies why a linear model would fail, and why a non-linear ensemble algorithm like **Random Forest** was required to achieve perfect classification boundaries.
     
 
 🚀 Execution & Deployment Guide
