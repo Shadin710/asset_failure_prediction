@@ -92,34 +92,34 @@ Clone this repository to your local directory and install the pinned core requir
 ```
 git clone https://github.com/Shadin710/asset_failure_prediction.git
 ```
-Bash
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pip install -r requirements.txt   `
+Make a virtual environment for the project using Command Prompt
+```
+python -m venv venv
+```
+Install the all Dependencies in the ``requirements.txt`` file 
+```
+  pip install -r requirements.txt
+```
 
 ### 2\. Execute Unit Testing Suite
 
 Run automated unit tests to verify that feature calculations, structural mappings, and physical transformations are computing within strict mathematical tolerances:
-
-Bash
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pytest tests/   `
-
+```
+pytest tests/
+```
 ### 3\. Run the Production Training Pipeline
 
 Execute the root orchestration script to load raw data, run feature transformations, train the two-tier classifiers using cost-sensitive balancing, and save the binary .pkl models:
-
-Bash
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   python main.py   `
+```
+python main.py
+```
 
 ### 4\. Launch the Interactive Web Dashboard
 
 Spin up your local development server to run the Streamlit user interface panel:
-
-Bash
-
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   streamlit run dashboard.py   `
-
+```
+streamlit run dashboard.py   `
+```
 💡 Two-Tier Predictive Decision Logic
 -------------------------------------
 
